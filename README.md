@@ -7,9 +7,9 @@ Admin account:
 User: admin@example.com
 Pass: verySafeAdminPassword
 
-If you want to run the application on your localhost, after git clone go to the project's directory and run:
+If you want to run the application on your localhost be sure in your computer php in version at least 7.1 is already installed. After git clone go to the project's directory and run:
 ```sh
-$ composer install (php7.1 required)
+$ composer install
 ```
 Here, enter some information about your database, and set secret and jwt keys. Make sure the user
 has permission to create database.
