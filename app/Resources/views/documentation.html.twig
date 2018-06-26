@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="robots" content="noindex">
+    <meta charset="UTF-8" />
+    <style type="text/css">
+        body {
+            font-family: sans-serif;
+            font-size: 0.85em;
+            margin: 2em 2em;
+        }
+        .methods {
+            margin-top: 2em;
+            margin-bottom: 2em;
+        }
+        .method {
+            background-color: #eef;
+            border: 1px solid #DDDDE6;
+            padding: .5em;
+            margin-bottom: 1em;
+            width: 50em
+        }
+        .methodNameTable {
+            width: 100%;
+            border: 0px;
+            border-bottom: 2px solid white;
+            font-size: 1.4em;
+        }
+        .methodNameTd {
+            background-color: #eef;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 0em;
+        }
+        h2 {
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-size: 1.5em;
+        }
+        h3 {
+            color: -webkit-link;
+            font-size: 1.35em;
+            margin-top: .5em;
+            margin-bottom: 0em;
+        }
+        h5 {
+            font-size: 1.2em;
+            color: #99a;
+            margin: 0.5em 0em 0.25em 0em;
+        }
+        h6 {
+            color: #700000;
+            font-size: 1em;
+            margin: 1em 0em 0em 0em;
+        }
+        .h7 {
+            margin-top: .75em;
+            font-size: 1em;
+            font-weight: bold;
+            font-style: italic;
+            color: blue;
+        }
+        .h8 {
+            margin-top: .75em;
+            font-size: 1em;
+            font-weight: bold;
+            font-style: italic;
+            color: black;
+        }
+        tt {
+            font-size: 1em;
+        }
+        table {
+            border: 1px solid #E0E0E0;
+        }
+        th {
+            color: black;
+            background-color: #DDDDDD;
+            padding: 6px;
+            border: 1px solid #B1B1B1;
+        }
+        td {
+            padding: 8px;
+            vertical-align: top;
+            background-color: #F6F6F6;
+            font-size: 0.85em;
+        }
+        td.row {
+            background-color: white;
+            border-bottom: 1px solid #F6F6F6;
+        }
+    </style>
+    <title>API Documentation</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+</head>
+<body>
+<h1>
+    API Documentation
+</h1>
+<br />
+<table style="width: 100%">
+    <tr>
+        <th>Resource</th>
+        <th>Method</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_carts">
+                {{ baseUrl }}/carts
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_carts_collection">GET</a>
+            <br /><br />
+            <a href="#api_carts_new">POST</a>
+        </td>
+        <td class="row">
+            Returns the list of carts.
+            <br /><br />
+            Adds a new cart.
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_carts_cartId">
+                {{ baseUrl }}/carts/{cartId}
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_carts_show">GET</a>
+            <br /><br />
+            <a href="#api_carts_delete">DELETE</a>
+        </td>
+        <td class="row">
+            Gets the data of the provided cart.
+            <br /><br />
+            Deletes the provided cart.
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_carts_products">
+                {{ baseUrl }}/carts/{cartId}/products/{productId}
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_carts_add_product">PUT</a>
+            <br /><br />
+            <a href="#api_carts_remove_product">DELETE</a>
+        </td>
+        <td class="row">
+            Adds the provided product to the specified cart.
+            <br /><br />
+            Removes the provided product from the specified cart.
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_products">
+                {{ baseUrl }}/products
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_products_collection">GET</a>
+            <br /><br />
+            <a href="#api_products_new">POST</a>
+        </td>
+        <td class="row">
+            Returns the list of products.
+            <br /><br />
+            Adds a new product.
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_products_productId">
+                {{ baseUrl }}/products/{productId}
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_products_show">GET</a>
+            <br /><br />
+            <a href="#api_products_update_put">PUT</a>
+            <br /><br />
+            <a href="#api_products_update_patch">PATCH</a>
+            <br /><br />
+            <a href="#api_products_delete">DELETE</a>
+        </td>
+        <td class="row">
+            Gets the data of the provided product.
+            <br /><br />
+            Updates the provided product
+            <br /><br />
+            Updates the provided product
+            <br /><br />
+            Deletes the provided product
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_tokens">
+                {{ baseUrl }}/tokens
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_tokens_new">POST</a>
+        </td>
+        <td class="row">
+            Generates a new token
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_users">
+                {{ baseUrl }}/users
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_users_collection">GET</a>
+            <br /><br />
+            <a href="#api_users_new">POST</a>
+        </td>
+        <td class="row">
+            Returns the list of users.
+            <br /><br />
+            Adds a new user.
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            <a href="#api_users_userId">
+                {{ baseUrl }}/users/{userId}
+            </a>
+        </td>
+        <td class="row">
+            <a href="#api_users_show">GET</a>
+            <br /><br />
+            <a href="#api_users_update_put">PUT</a>
+            <br /><br />
+            <a href="#api_users_update_patch">PATCH</a>
+            <br /><br />
+            <a href="#api_users_delete">DELETE</a>
+        </td>
+        <td class="row">
+            Gets the data of the provided user.
+            <br /><br />
+            Updates the provided user
+            <br /><br />
+            Updates the provided user
+            <br /><br />
+            Deletes the provided user
+        </td>
+    </tr>
+</table>
+<h2>Resources</h2>
+
+
+<!-- START /API/CARTS -->
+<h3>
+    <a name="api_carts">
+        {{ baseUrl }}/carts
+    </a>
+</h3>
+<!-- START /API/CARTS GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_collection">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@listAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Returns the list of carts. <i>Admin permission required.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#cart">
+                                Cart
+                            </a>
+                        </td>
+                        <td>
+                            List of the all available carts data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/CARTS GET -->
+<!-- START /API/CARTS POST -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_new">
+                        POST
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@newAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Adds a new cart. <i>Authorized user permission required.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            201 - Created
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#cart">
+                                Cart
+                            </a>
+                        </td>
+                        <td>
+                            Cart data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- END /API/CARTS POST -->
+<!-- END /API/CARTS -->
+
+<!-- START /API/CARTS/{id} -->
+<h3>
+    <a name="api_carts_cartId">
+        {{ baseUrl }}/carts/{cartId}
+    </a>
+</h3>
+<!-- START /API/CARTS/{id} GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_show">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@showAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Gets the data of the provided cart.
+            <br>
+            <i>Authorized user permission required to get his own carts. Admin permission required to get all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        cartId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the cart to get.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#cart">
+                                Cart
+                            </a>
+                        </td>
+                        <td>
+                            Cart data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/CARTS/{id} GET -->
+<!-- START /API/CARTS/{id} DELETE -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_delete">
+                        DELETE
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@deleteAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Deletes the provided user.
+            <br>
+            <i>Authorized user permission required to delete his own carts. Admin permission required to delete all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        cartId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the cart to delete.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            204 - No Content
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+<!-- END /API/CARTS/{id} DELETE -->
+<!-- END /API/CARTS/{id} -->
+
+<!-- START /API/CARTS/{id}/PRODUCTS/{id} -->
+<h3>
+    <a name="api_carts_products">
+        {{ baseUrl }}/carts/{cartId}/products/{productId}
+    </a>
+</h3>
+<!-- START /API/CARTS/{id}/PRODUCTS/{id} PUT -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_add_product">
+                        PUT
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@addProductToCartAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Adds the provided product to the specified cart.
+            <br>
+            <i>Authorized user permission required to add product to his own carts. Admin permission required to add products to all carts.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        cartId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the cart.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to remove from cart.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#cart">
+                                Cart
+                            </a>
+                        </td>
+                        <td>
+                            Cart data after adding product.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/CARTS/{id}/PRODUCTS/{id} PUT -->
+<!-- START /API/CARTS/{id}/PRODUCTS/{id} DELETE -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_carts_remove_product">
+                        DELETE
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    CartController@removeProductFromCartAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Removes the provided product from the specified cart.
+            <br>
+            <i>Authorized user permission required to delete product from his own carts. Admin permission required to delete products from all carts.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        cartId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the cart.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to remove from cart.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#cart">
+                                Cart
+                            </a>
+                        </td>
+                        <td>
+                            Cart data after removing product.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/CARTS/{id}/PRODUCTS/{id} DELETE -->
+<!-- END /API/CARTS/{id}/PRODUCTS/{id} -->
+
+<!-- START /API/PRODUCTS -->
+<h3>
+    <a name="api_products">
+        {{ baseUrl }}/products
+    </a>
+</h3>
+<!-- START /API/PRODUCTS GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_collection">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@listAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Returns the list of products.<br>
+            You can filter products by title through adding "?filter=value" at the end of the url
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <br/><i>No params required.</i>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </td>
+                        <td>
+                            List of the all available products data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/PRODUCTS GET -->
+<!-- START /API/PRODUCTS POST -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_new">
+                        POST
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@newAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Adds a new product. <i>Admin permission required.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        title
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Title of the new product. Required.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        price
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#double">
+                            double
+                        </a>
+                    </td>
+                    <td>
+                        Price of the new product. Required.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            201 - Created
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </td>
+                        <td>
+                            Product data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- END /API/PRODUCTS POST -->
+<!-- END /API/PRODUCTS -->
+
+<!-- START /API/PRODUCTS/{id} -->
+<h3>
+    <a name="api_products_productId">
+        {{ baseUrl }}/product/{productId}
+    </a>
+</h3>
+<!-- START /API/PRODUCTS/{id} GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_show">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@showAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Gets the data of the provided user.
+       </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to get.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </td>
+                        <td>
+                            Product data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/PRODUCTS/{id} GET -->
+<!-- START /API/PRODUCTS/{id} PATCH -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_update_put">
+                        PUT
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@updateAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Updates the provided product. <i>Admin permission required to update all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to update.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        title
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A title of the product. Required.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        price
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#double">
+                            double
+                        </a>
+                    </td>
+                    <td>
+                        A price of the product. Required.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </td>
+                        <td>
+                            Updated Product data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/PRODUCTS/{id} PATCH -->
+<!-- START /API/PRODUCTS/{id} PATCH -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_update_patch">
+                        PATCH
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@updateAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Updates the provided product. <i>Admin permission required to update all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to update.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        title
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A title of the product. Optional.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        price
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#double">
+                            double
+                        </a>
+                    </td>
+                    <td>
+                        A price of the product. Optional.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#product">
+                                Product
+                            </a>
+                        </td>
+                        <td>
+                            Updated Product data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/PRODUCTS/{id} PATCH -->
+<!-- START /API/PRODUCTS/{id} DELETE -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_products_delete">
+                        DELETE
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    ProductController@deleteAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Deletes the provided product. <i>Admin permission required to get all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        productId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the product to delete.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            204 - No Content
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+<!-- END /API/PRODUCTS/{id} DELETE -->
+<!-- END /API/PRODUCTS/{id} -->
+<!-- START /API/TOKENS -->
+<h3>
+    <a name="api_tokens">
+        {{ baseUrl }}/tokens
+    </a>
+</h3>
+<!-- START /API/TOKENS POST -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_tokens_new">
+                        POST
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    TokenController@newAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Generates a new token.
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Basic
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Contains the <a href="#user">User</a> username and password. Required.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#token">
+                                Token
+                            </a>
+                        </td>
+                        <td>
+                            Token data for user.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- END /API/TOKENS POST -->
+<!-- END /API/TOKENS -->
+
+<!-- START /API/USERS -->
+<h3>
+    <a name="api_users">
+        {{ baseUrl }}/users
+    </a>
+</h3>
+<!-- START /API/USERS GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_collection">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@listAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Returns the list of users. <i>Admin permission required.</i><br/>
+            You can filter users by username and email through adding "?filter=value" at the end of the url
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#user">
+                                User
+                            </a>
+                        </td>
+                        <td>
+                            List of the all available users data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/USERS GET -->
+<!-- START /API/USERS POST -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_new">
+                        POST
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@newAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Adds a new user.
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        username
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Username for the new user. Unique. Required.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        email
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A proper email for the new user. Unique. Required.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        password
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A password for the new user. Required.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            201 - Created
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#user">
+                                User
+                            </a>
+                        </td>
+                        <td>
+                            User data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<br />
+<!-- END /API/USERS POST -->
+<!-- END /API/USERS -->
+
+<!-- START /API/USERS/{id} -->
+<h3>
+    <a name="api_users_userId">
+        {{ baseUrl }}/users/{userId}
+    </a>
+</h3>
+<!-- START /API/USERS/{id} GET -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_show">
+                        GET
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@showAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Gets the data of the provided user.
+            <br>
+            <i>Authorized user permission required to get his own data. Admin permission required to get all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        userId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the user to get.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#user">
+                                User
+                            </a>
+                        </td>
+                        <td>
+                            User data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/USERS/{id} GET -->
+<!-- START /API/USERS/{id} PUT -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_update_put">
+                        PUT
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@updateAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Updates the provided user.
+            <br>
+            <i>Authorized user permission required to update his own data. Admin permission required to update all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        userId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the user to update.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        email
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A email for the user. Unique. Required.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        password
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A password for the user. Required.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#user">
+                                User
+                            </a>
+                        </td>
+                        <td>
+                            Updated User data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/USERS/{id} PUT -->
+<!-- START /API/USERS/{id} PATCH -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_update_patch">
+                        PATCH
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@updateAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Updates the provided user.
+            <br>
+            <i>Authorized user permission required to update his own data. Admin permission required to update all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        userId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the user to update.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                query params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        email
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A email for the user. Unique. Optional.
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-weight: bold">
+                        password
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        A password for the user. Optional.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <div class="h7">
+                representations
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        application/json
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            200 - OK
+            <div style="margin-left: 2em">
+                <div class="h7">
+                    representations
+                </div>
+                <table>
+                    <tr>
+                        <td style="font-weight: bold">
+                            application/hal+json
+                        </td>
+                        <td>
+                            <a href="#user">
+                                User
+                            </a>
+                        </td>
+                        <td>
+                            Updated User data.
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- END /API/USERS/{id} PATCH -->
+<!-- START /API/USERS/{id} DELETE -->
+<div class="methods">
+    <div class="method">
+        <table class="methodNameTable">
+            <tr>
+                <td class="methodNameTd" style="font-weight: bold">
+                    <a name="api_users_delete">
+                        DELETE
+                    </a>
+                </td>
+                <td class="methodNameTd" style="text-align: right">
+                    UserController@deleteAction()
+                </td>
+            </tr>
+        </table>
+        <p>
+            Deletes the provided user.
+            <br>
+            <i>Authorized user permission required to delete his own data. Admin permission required to delete all resources.</i>
+        </p>
+        <h6>
+            request
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h7">
+                headers
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        Authorization: Bearer
+                    </td>
+                    <td>
+                        <a href="#token">
+                            Token
+                        </a>
+                    </td>
+                    <td>
+                        Contains the Authorization Token. Required.
+                    </td>
+                </tr>
+            </table>
+            <div class="h7">
+                template params
+            </div>
+            <table>
+                <tr>
+                    <td style="font-weight: bold">
+                        userId
+                    </td>
+                    <td>
+                        <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                            string
+                        </a>
+                    </td>
+                    <td>
+                        Id of the user to delete.
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <h6>
+            responses
+        </h6>
+        <div style="margin-left: 2em">
+            <div class="h8">
+                status:
+            </div>
+            204 - No Content
+            <br />
+            <br />
+        </div>
+    </div>
+</div>
+<!-- END /API/USERS/{id} DELETE -->
+<!-- END /API/USERS/{id} -->
+
+<h2><a name="cart">Cart</a></h2>
+<br />
+<table style="width: 50%">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Annotations</th>
+    </tr>
+    <tr>
+        <td class="row">
+            id
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#integer">
+                integer
+            </a>
+        </td>
+        <td class="row">
+            Internal Cart identifier
+        </td>
+        <td class="row">
+            ReadOnly
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            totalPrice
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#double">
+                double
+            </a>
+        </td>
+        <td class="row">
+            Total price of all products in cart
+        </td>
+        <td class="row">
+            ReadOnly
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            products
+        </td>
+        <td class="row">
+            <a href="#product">
+                ProductsArray[]
+            </a>
+        </td>
+        <td class="row">
+            Array of products
+        </td>
+        <td class="row">
+
+        </td>
+    </tr>
+</table>
+
+<h2><a name="product">Product</a></h2>
+<br />
+<table style="width: 50%">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Annotations</th>
+    </tr>
+    <tr>
+        <td class="row">
+            id
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#integer">
+                integer
+            </a>
+        </td>
+        <td class="row">
+            Internal Product identifier
+        </td>
+        <td class="row">
+            ReadOnly
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            title
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                string
+            </a>
+        </td>
+        <td class="row">
+
+        </td>
+        <td class="row">
+            Required
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            price
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#double">
+                double
+            </a>
+        </td>
+        <td class="row">
+            Product's price rounded to two decimal places
+        </td>
+        <td class="row">
+            Required
+        </td>
+    </tr>
+</table>
+
+<h2><a name="token">Token</a></h2>
+<br />
+<table style="width: 50%">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Annotations</th>
+    </tr>
+    <tr>
+        <td class="row">
+            token
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                string
+            </a>
+        </td>
+        <td class="row">
+            Authorization Token (expires in 60 minutes)
+        </td>
+        <td class="row">
+            ReadOnly
+        </td>
+    </tr>
+</table>
+
+<h2><a name="user">User</a></h2>
+<br />
+<table style="width: 50%">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Annotations</th>
+    </tr>
+    <tr>
+        <td class="row">
+            id
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#integer">
+                integer
+            </a>
+        </td>
+        <td class="row">
+            Internal User identifier
+        </td>
+        <td class="row">
+            ReadOnly
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            username
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                string
+            </a>
+        </td>
+        <td class="row">
+
+        </td>
+        <td class="row">
+            Unique<br/><br/>
+            ReadOnly
+        </td>
+    </tr>
+    <tr>
+        <td class="row">
+            email
+        </td>
+        <td class="row">
+            <a href="http://www.w3.org/TR/xmlschema-2/#string">
+                string
+            </a>
+        </td>
+        <td class="row">
+            Proper email addres
+        </td>
+        <td class="row">
+            Required<br/><br />
+            Unique
+        </td>
+    </tr>
+</table>
+</body>
+</html>

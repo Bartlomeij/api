@@ -1,0 +1,54 @@
+AppBundle\Entity\User:
+    user:
+        username: admin
+        email: admin@example.com
+        plainPassword: verySafeAdminPassword
+        roles: ['ROLE_ADMIN']
+    user_{1..10}:
+        username: <username()><current()>
+        email: user<current()>@gmail.com
+        plainPassword: secretPass
+        created_at: <dateTimeBetween("-200 days", "now")>
+        updated_at: <dateTimeBetween($created_at, "now")>
+
+AppBundle\Entity\Product:
+    product_1:
+        user: '@user'
+        title: 'Fallout'
+        price: 1.99
+    product_2:
+        user: '@user'
+        title: "Don’t Starve"
+        price: 2.99
+    product_3:
+        user: '@user'
+        title: "Baldur’s Gate"
+        price: 3.99
+    product_4:
+        user: '@user'
+        title: "Icewind Dale"
+        price: 4.99
+    product_5:
+        user: '@user'
+        title: "Bloodborne"
+        price: 5.99
+    product_6:
+        user: '@user'
+        title: "SimCity™ 4 Deluxe Edition"
+        price: 3.99
+    product_7:
+        user: '@user'
+        title: "Carmageddon: Max Damage"
+        price: 4.99
+    product_8:
+        user: '@user'
+        title: "Tokyo 42"
+        price: 5.99
+    product_9:
+        user: '@user'
+        title: "Theme Hospital"
+        price: 2.99
+    product_10:
+        user: '@user'
+        title: "SimCity™ 3000 Unlimited"
+        price: 3.99
